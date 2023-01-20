@@ -19,7 +19,7 @@ public class DozerMapper {
         List<D> destinationObjects = new ArrayList<>();
 
         for(O o : origin){
-            destinationObjects.add(mapper.map(origin, destination));
+            destinationObjects.add(mapper.map(o, destination));
         }
 
         return destinationObjects;
