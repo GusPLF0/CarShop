@@ -14,6 +14,7 @@ public class CarDTO extends RepresentationModel<CarDTO> implements Serializable 
     @Mapping("id")
     private Long key;
 
+    @JsonProperty("vehicle_type")
     private String vehicleType;
 
     private String brand;

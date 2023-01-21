@@ -3,7 +3,7 @@ Next things to implement in car API :
 -> Add the USER Models, Service, Repository, Exceptions, and else...
 	-> Implement the security of Car CRUD, just admins can alter cars. 	
 
--> Flyway migrations (Database auto increment)
+(CHECKED) -> Flyway migrations (Database auto increment) (CHECKED)
 
 (CHECKED) Value Object implementation -> Implements DozzerMapper! (CHECKED)
 
