@@ -1,13 +1,14 @@
 package com.gus.carshop.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-
+@JsonPropertyOrder({"key", "vehicle_type", "brand", "model", "year", "price"})
 public class CarDTO extends RepresentationModel<CarDTO> implements Serializable {
 
     @JsonProperty("id")

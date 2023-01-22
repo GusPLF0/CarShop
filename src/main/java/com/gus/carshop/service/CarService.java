@@ -1,5 +1,6 @@
 package com.gus.carshop.service;
 
+import com.gus.carshop.controller.CarController;
 import com.gus.carshop.dto.CarDTO;
 import com.gus.carshop.exception.CarNotFoundException;
 import com.gus.carshop.mapper.DozerMapper;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class CarService {
@@ -22,18 +26,30 @@ public class CarService {
 
 
     public CarDTO findById(Long id) {
-        return DozerMapper.parseObject(repository.findById(id).orElseThrow(CarNotFoundException::new), CarDTO.class);
+		CarDTO carDTO = DozerMapper.parseObject(repository.findById(id).orElseThrow(CarNotFoundException::new), CarDTO.class);
+		carDTO.add(linkTo(methodOn(CarController.class).findOneCar(id)).withSelfRel());
+		return carDTO;
     }
 
     public List<CarDTO> findAll() {
-        return DozerMapper.parseListObject(repository.findAll(), CarDTO.class);
+		List<CarDTO> carDTOS = DozerMapper.parseListObject(repository.findAll(), CarDTO.class);
+
+		for (CarDTO carDTO : carDTOS) {
+			carDTO.add(linkTo(methodOn(CarController.class).findAllCars()).withSelfRel());
+		}
+
+		return carDTOS;
     }
 
     public CarDTO create(CarDTO car) {
 
+
         Car convertedCar = DozerMapper.parseObject(car, Car.class);
 
-        return DozerMapper.parseObject(repository.save(convertedCar), CarDTO.class);
+		CarDTO carDTO = DozerMapper.parseObject(repository.save(convertedCar), CarDTO.class);
+
+		carDTO.add(linkTo(methodOn(CarController.class).create(car)).withSelfRel());
+		return carDTO;
     }
 
     public CarDTO update(CarDTO car) {
@@ -45,7 +61,11 @@ public class CarService {
         carFound.setYear(car.getYear());
         carFound.setVehicleType(car.getVehicleType());
 
-        return DozerMapper.parseObject(repository.save(carFound), CarDTO.class);
+		CarDTO carDTO = DozerMapper.parseObject(repository.save(carFound), CarDTO.class);
+
+		carDTO.add(linkTo(methodOn(CarController.class).update(car)).withSelfRel());
+
+		return carDTO;
     }
 
     public void delete(Long id) {
