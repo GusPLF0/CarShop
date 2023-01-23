@@ -2,6 +2,8 @@
 
 A API para uma plataforma de vendas de carros que permite a autenticação de usuários, garantindo que somente usuários autenticados possam alterar os carros.
 
+Projeto Exame Chunnin DevDojo
+
 ## Índice
 - [Funcionalidades](#funcionalidades)
 - [Uso](#uso)
