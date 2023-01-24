@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @JsonPropertyOrder({"key", "vehicle_type", "brand", "model", "year", "price"})
-public class CarDTO extends RepresentationModel<CarDTO> implements Serializable {
+public class CarDTO  implements Serializable {
 
     @JsonProperty("id")
     @Mapping("id")

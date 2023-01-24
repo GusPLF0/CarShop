@@ -33,6 +33,8 @@ public class Car implements Serializable {
 	@OneToMany(mappedBy = "car")
 	private List<Image> images;
 
+	// TODO ADICIONAR PROPRIEDADE telefoneContato!
+
 	public Car() {
 	}
 

@@ -27,16 +27,16 @@ public class CarService {
 
     public CarDTO findById(Long id) {
 		CarDTO carDTO = DozerMapper.parseObject(repository.findById(id).orElseThrow(CarNotFoundException::new), CarDTO.class);
-		carDTO.add(linkTo(methodOn(CarController.class).findOneCar(id)).withSelfRel());
+//		carDTO.add(linkTo(methodOn(CarController.class).findOneCar(id)).withSelfRel());
 		return carDTO;
     }
 
     public List<CarDTO> findAll() {
 		List<CarDTO> carDTOS = DozerMapper.parseListObject(repository.findAll(), CarDTO.class);
 
-		for (CarDTO carDTO : carDTOS) {
-			carDTO.add(linkTo(methodOn(CarController.class).findAllCars()).withSelfRel());
-		}
+//		for (CarDTO carDTO : carDTOS) {
+//			carDTO.add(linkTo(methodOn(CarController.class).findAllCars()).withSelfRel());
+//		}
 
 		return carDTOS;
     }
@@ -48,7 +48,7 @@ public class CarService {
 
 		CarDTO carDTO = DozerMapper.parseObject(repository.save(convertedCar), CarDTO.class);
 
-		carDTO.add(linkTo(methodOn(CarController.class).create(car)).withSelfRel());
+//		carDTO.add(linkTo(methodOn(CarController.class).create(car)).withSelfRel());
 		return carDTO;
     }
 
@@ -63,7 +63,7 @@ public class CarService {
 
 		CarDTO carDTO = DozerMapper.parseObject(repository.save(carFound), CarDTO.class);
 
-		carDTO.add(linkTo(methodOn(CarController.class).update(car)).withSelfRel());
+//		carDTO.add(linkTo(methodOn(CarController.class).update(car)).withSelfRel());
 
 		return carDTO;
     }
