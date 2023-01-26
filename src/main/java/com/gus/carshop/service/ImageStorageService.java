@@ -7,6 +7,7 @@ import com.gus.carshop.dto.ImageDTO;
 import com.gus.carshop.dto.ImageDTO;
 import com.gus.carshop.exception.CarNotFoundException;
 import com.gus.carshop.exception.FileStorageException;
+import com.gus.carshop.exception.ImageNotFoundException;
 import com.gus.carshop.mapper.DozerMapper;
 import com.gus.carshop.mapper.custom.CarMapper;
 import com.gus.carshop.model.Car;
@@ -23,6 +24,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -56,7 +59,7 @@ public class ImageStorageService {
 
 		Car car = carRepository.findById(car_id).orElseThrow(CarNotFoundException::new);
 
-		String imageName = StringUtils.cleanPath(image.getOriginalFilename());
+		String imageName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
 		try {
 			Path targetLocation = this.fileStorageLocation.resolve(imageName);
 			Files.copy(image.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
@@ -80,5 +83,29 @@ public class ImageStorageService {
 
 
 		return imageDTOS;
+	}
+
+	public ImageDTO findById(Long id) {
+		Image imageFound = imageRepository.findById(id).orElseThrow(() -> new ImageNotFoundException("Image of id " + id + " not found"));
+
+		ImageDTO imageDTO = DozerMapper.parseObject(imageFound, ImageDTO.class);
+
+		return imageDTO;
+	}
+
+
+	public void deleteImage(Long id) {
+		Image imageFound = imageRepository.findById(id).orElseThrow(() -> new ImageNotFoundException("Image of id " + id + " not found"));
+
+		String imageName = imageFound.getImageName();
+
+		try {
+			Path targetLocation = this.fileStorageLocation.resolve(imageName);
+			Files.deleteIfExists(targetLocation);
+		} catch (Exception e) {
+			throw new FileStorageException("Couldn't delete file " + imageName + ". Please try again");
+		}
+
+		imageRepository.delete(imageFound);
 	}
 }

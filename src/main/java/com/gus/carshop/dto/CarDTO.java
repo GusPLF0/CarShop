@@ -30,6 +30,9 @@ public class CarDTO  implements Serializable {
 
 	private List<Image> images;
 
+	@JsonProperty("seller_email")
+	private String sellerEmail;
+
 	public CarDTO() {
 	}
 
@@ -45,6 +48,14 @@ public class CarDTO  implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(super.hashCode(), key);
+	}
+
+	public String getSellerEmail() {
+		return sellerEmail;
+	}
+
+	public void setSellerEmail(String sellerEmail) {
+		this.sellerEmail = sellerEmail;
 	}
 
 	public Long getKey() {

@@ -10,35 +10,36 @@ import java.util.Objects;
 @Table(name = "cars")
 public class Car implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "car_id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "car_id")
+	private Long id;
 
-    @Column(name = "vehicle_type")
-    private String vehicleType;
+	@Column(name = "vehicle_type")
+	private String vehicleType;
 
-    @Column
-    private String brand;
+	@Column
+	private String brand;
 
-    @Column
-    private String model;
+	@Column
+	private String model;
 
-    @Column(length = 4)
-    private Integer year;
+	@Column(length = 4)
+	private Integer year;
 
-    @Column
-    private Double price;
+	@Column
+	private Double price;
 
 	@OneToMany(mappedBy = "car")
 	private List<Image> images;
 
-	// TODO ADICIONAR PROPRIEDADE telefoneContato!
+	@Column(name = "seller_email")
+	private String sellerEmail;
 
 	public Car() {
 	}
 
-	public Car(Long id, String vehicleType, String brand, String model, Integer year, Double price, List<Image> images) {
+	public Car(Long id, String vehicleType, String brand, String model, Integer year, Double price, List<Image> images, String emailVendedor) {
 		this.id = id;
 		this.vehicleType = vehicleType;
 		this.brand = brand;
@@ -46,6 +47,7 @@ public class Car implements Serializable {
 		this.year = year;
 		this.price = price;
 		this.images = images;
+		this.sellerEmail = emailVendedor;
 	}
 
 	@Override
@@ -59,6 +61,14 @@ public class Car implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public String getSellerEmail() {
+		return sellerEmail;
+	}
+
+	public void setSellerEmail(String sellerEmail) {
+		this.sellerEmail = sellerEmail;
 	}
 
 	public Long getId() {

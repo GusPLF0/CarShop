@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -19,17 +18,18 @@ public class JwtService {
 
 	private static final String SECRET_KEY = "4A614E645267556B58703273357638782F413F4428472B4B6250655368566D59";
 
-	public String extractUsername(String token){
+	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
+
 	}
 
-	public <T> T extractClaim(String token, Function<Claims, T> claimResolver){
+	public <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
 		final Claims claims = extractAllClaims(token);
 		return claimResolver.apply(claims);
 	}
 
-	public TokenDTO generateToken(UserDetails userDetails){
-		Date validity = new Date(System.currentTimeMillis() + 100 * 60 * 24);
+	public TokenDTO generateToken(UserDetails userDetails) {
+		Date validity = new Date(System.currentTimeMillis() + 100 * 60 * 24 *100);
 
 		Date now = new Date(System.currentTimeMillis());
 
@@ -45,16 +45,16 @@ public class JwtService {
 
 	}
 
-	public boolean isTokenValid(String token, UserDetails userDetails){
+	public boolean isTokenValid(String token, UserDetails userDetails) {
 		final String username = extractUsername(token);
-		return(username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}
 
 	private boolean isTokenExpired(String token) {
 		return extractClaim(token, Claims::getExpiration).before(new Date());
 	}
 
-	private Claims extractAllClaims(String token){
+	private Claims extractAllClaims(String token) {
 		return Jwts
 			.parserBuilder()
 			.setSigningKey(getSignInKey())
