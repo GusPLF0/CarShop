@@ -19,11 +19,11 @@ Projeto Exame Chunnin DevDojo
 
 ## Uso
 
-###Pré-requisitos
+### Pré-requisitos
  - Java 8 ou superior
  - Maven
  - Um banco de dados, como MySQL ou PostgreSQL
-###Instalação
+### Instalação
  - Clone o repositório para sua máquina local
  - Abra o projeto em sua IDE preferida
  - No arquivo application.properties, atualize a configuração do banco de dados para corresponder à sua configuração local
