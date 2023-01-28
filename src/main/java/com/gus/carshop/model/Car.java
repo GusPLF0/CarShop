@@ -3,6 +3,7 @@ package com.gus.carshop.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,14 +25,14 @@ public class Car implements Serializable {
 	@Column
 	private String model;
 
-	@Column(length = 4)
+	@Column(name = "car_year",length = 4)
 	private Integer year;
 
 	@Column
 	private Double price;
 
 	@OneToMany(mappedBy = "car")
-	private List<Image> images;
+	private List<Image> images = new ArrayList<>();
 
 	@Column(name = "seller_email")
 	private String sellerEmail;
@@ -39,14 +40,13 @@ public class Car implements Serializable {
 	public Car() {
 	}
 
-	public Car(Long id, String vehicleType, String brand, String model, Integer year, Double price, List<Image> images, String emailVendedor) {
+	public Car(Long id, String vehicleType, String brand, String model, Integer year, Double price, String emailVendedor) {
 		this.id = id;
 		this.vehicleType = vehicleType;
 		this.brand = brand;
 		this.model = model;
 		this.year = year;
 		this.price = price;
-		this.images = images;
 		this.sellerEmail = emailVendedor;
 	}
 
@@ -123,7 +123,4 @@ public class Car implements Serializable {
 		return images;
 	}
 
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
 }

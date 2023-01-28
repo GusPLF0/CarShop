@@ -5,7 +5,7 @@ import com.gus.carshop.model.Image;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarMapper {
+public class CustomImageMapper {
 
 	public static ImageDTO convertEntityToDto(Image image){
 		ImageDTO imageDTO = new ImageDTO();

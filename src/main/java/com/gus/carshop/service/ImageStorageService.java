@@ -1,15 +1,12 @@
 package com.gus.carshop.service;
 
 import com.gus.carshop.config.ImageStorageConfig;
-import com.gus.carshop.controller.CarController;
-import com.gus.carshop.controller.ImageController;
-import com.gus.carshop.dto.ImageDTO;
 import com.gus.carshop.dto.ImageDTO;
 import com.gus.carshop.exception.CarNotFoundException;
 import com.gus.carshop.exception.FileStorageException;
 import com.gus.carshop.exception.ImageNotFoundException;
 import com.gus.carshop.mapper.DozerMapper;
-import com.gus.carshop.mapper.custom.CarMapper;
+import com.gus.carshop.mapper.custom.CustomImageMapper;
 import com.gus.carshop.model.Car;
 import com.gus.carshop.model.Image;
 import com.gus.carshop.repository.CarRepository;
@@ -25,10 +22,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class ImageStorageService {
@@ -72,7 +67,7 @@ public class ImageStorageService {
 
 		Image save = imageRepository.save(imageEntity);
 
-		ImageDTO imageDTO = CarMapper.convertEntityToDto(save);
+		ImageDTO imageDTO = CustomImageMapper.convertEntityToDto(save);
 
 		return imageDTO;
 
