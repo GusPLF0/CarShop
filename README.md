@@ -26,7 +26,7 @@ Projeto Exame Chunnin DevDojo
 ### Instalação
  - Clone o repositório para sua máquina local
  - Abra o projeto em sua IDE preferida
- - No arquivo application.properties, atualize a configuração do banco de dados para corresponder à sua configuração local
+ - No arquivo application.yml, atualize a configuração do banco de dados para corresponder à sua configuração local
  - Execute o projeto usando o comando mvn spring-boot:run
  - A API estará disponível em http://localhost:8080
 
