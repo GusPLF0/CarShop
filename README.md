@@ -15,6 +15,8 @@ A API para uma plataforma de vendas de carros que permite a autenticação de us
 - [Licença](#licença)
 
 ## Funcionalidades
+![Funcionalidades](https://user-images.githubusercontent.com/79981630/216797238-c050246e-a938-45ab-b073-11191e91816c.png)
+
 - Autenticação de usuário
 - Visualização de carros
 - Deleção de carros
