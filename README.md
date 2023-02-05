@@ -36,4 +36,4 @@ A API para uma plataforma de vendas de carros que permite a autenticação de us
  - A API estará disponível em http://localhost:8080
 
 ## Documentação
-A documentação completa da API, incluindo exemplos de chamadas e respostas, estará disponível em breve
+A documentação completa da API, incluindo exemplos de chamadas e respostas, poderá ser acessada pelo url http://localhost:8080/swagger-ui/index.html
