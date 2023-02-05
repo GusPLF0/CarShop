@@ -34,6 +34,7 @@ public class SecurityConfiguration {
 			.disable()
 			.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
 				.requestMatchers(HttpMethod.GET,"/cars", "/cars/{id}", "/images").permitAll()
+				.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
 				.requestMatchers("/auth/**").permitAll()
 				.requestMatchers("/users").denyAll()
 				.anyRequest().authenticated()

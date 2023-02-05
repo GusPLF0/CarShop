@@ -1,7 +1,5 @@
 package com.gus.carshop.dto;
 
-import org.springframework.hateoas.RepresentationModel;
-
 import java.io.Serializable;
 import java.util.Objects;
 

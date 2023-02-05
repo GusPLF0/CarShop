@@ -1,9 +1,6 @@
 package com.gus.carshop.service;
 
 import com.gus.carshop.config.ImageStorageConfig;
-import com.gus.carshop.controller.CarController;
-import com.gus.carshop.controller.ImageController;
-import com.gus.carshop.dto.ImageDTO;
 import com.gus.carshop.dto.ImageDTO;
 import com.gus.carshop.exception.CarNotFoundException;
 import com.gus.carshop.exception.FileStorageException;
@@ -25,10 +22,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class ImageStorageService {
@@ -38,7 +32,7 @@ public class ImageStorageService {
 	private CarRepository carRepository;
 
 	@Autowired
-	public ImageStorageService(ImageRepository imageRepository,CarRepository carRepository ,ImageStorageConfig imageStorageConfig) {
+	public ImageStorageService(ImageRepository imageRepository, CarRepository carRepository, ImageStorageConfig imageStorageConfig) {
 		this.imageRepository = imageRepository;
 		this.carRepository = carRepository;
 
