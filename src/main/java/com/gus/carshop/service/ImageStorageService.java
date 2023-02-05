@@ -23,10 +23,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 
-<<<<<<< HEAD
-=======
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
->>>>>>> 85c8cd2333108de9fe93f1322f8a0aadd1684e68
 
 @Service
 public class ImageStorageService {
