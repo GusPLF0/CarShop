@@ -6,6 +6,7 @@ import com.github.dozermapper.core.Mapping;
 import com.gus.carshop.model.Image;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,10 +28,20 @@ public class CarDTO  implements Serializable {
 
     private Double price;
 
-	private List<Image> images;
-
 	@JsonProperty("seller_email")
 	private String sellerEmail;
+
+	private List<Image> images = new ArrayList<>();
+
+	public CarDTO(Long key, String vehicleType, String brand, String model, Integer year, Double price, String sellerEmail) {
+		this.key = key;
+		this.vehicleType = vehicleType;
+		this.brand = brand;
+		this.model = model;
+		this.year = year;
+		this.price = price;
+		this.sellerEmail = sellerEmail;
+	}
 
 	public CarDTO() {
 	}
