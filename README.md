@@ -1,5 +1,5 @@
 # Car Sales API
-![GPCARSHOP](https://user-images.githubusercontent.com/79981630/216796971-3db1175c-80cf-421d-9abe-080e76350f46.png)
+![GPCARSHOP](https://user-images.githubusercontent.com/79981630/216796977-748b0971-5fdc-4d1a-9d8e-7a58a6ff4a86.png)
 
 
 A API para uma plataforma de vendas de carros que permite a autenticação de usuários, garantindo que somente usuários autenticados possam alterar os carros.
